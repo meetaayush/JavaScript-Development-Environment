@@ -5,11 +5,13 @@
   "main": "server.js",
   "scripts": {
     "prestart": "babel-node buildScripts/startMessage",
-    "start": "npm-run-all --parallel open:src",
-    "open:src": "babel-node server.js",
+    "start": "npm-run-all --parallel open:src lint:watch",
+    "open:src": "babel-node buildScripts/server.js",
     "localtunnel": "lt --port 5000 --subdomain ayush-dev-env",
     "share": "npm-run-all --parallel open:src localtunnel",
     "build": "webpack --mode=development",
+    "lint": "esw webpack.* src buildScripts --color",
+    "lint:watch": "npm run lint -- --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
