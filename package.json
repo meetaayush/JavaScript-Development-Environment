@@ -2,8 +2,13 @@
   "name": "javascript-development-environment",
   "version": "0.0.1",
   "description": "Javascript development environment to build apps in Node.js",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "prestart": "node buildScripts/startMessage",
+    "start": "npm-run-all --parallel open:src",
+    "open:src": "node server.js",
+    "localtunnel": "lt --port 5000 --subdomain ayush-dev-env",
+    "share": "npm-run-all --parallel open:src localtunnel",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
