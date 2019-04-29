@@ -13,7 +13,7 @@ This is a ready-to-use Javascript Development Environment. It includes the follo
 7. Continuous Deployment to Heroku
 
 ## Steps to Use the repository
-`npm install`
+`npm install` <br />
 `npm start`
 
 This will start the application at port 5000, run the linting and unit tests.
