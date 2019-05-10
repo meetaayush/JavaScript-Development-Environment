@@ -1,28 +1,28 @@
 /* eslint-disable no-console */
 
 import express from "express";
-import webpack from "webpack";
-import webpackDevMiddleware from "webpack-dev-middleware";
-import config from "../webpack.development.config";
 import open from "open";
+import path from "path";
+import compression from 'compression';
 
 const app = express();
-const compiler = webpack(config);
 
 // Tell express to use the webpack-dev-middleware and use the webpack.config.js
 // configuration file as a base.
-app.use(
-  webpackDevMiddleware(compiler, {
-    publicPath: config.output.publicPath
-  })
-);
 
-app.get('/users', (req, res) => {
-  res.json({ msg: 'hello' })
+// Enable compression
+app.compression(compression());
+
+app.use(express.static('dist'));
+
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
 })
 
 // Serve the files on port 5000.
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, err => {
   if (err) {
     console.log(err);
